@@ -23,18 +23,17 @@ def main():
 		writeToLog('[d]', timeStr(), 'studying started')
 		winsound.Beep(600, 550)
 		time.sleep(pluggtid)
-		writeToLog('[r]', timeStr(), 'studying ended')
 		winsound.Beep(400, 1000)
 		comment = input("i de senaste " + str(pluggtid / 60) + " min har jag: ")
-		writeToLog('[c]', timeStr(), comment)
+		writeToLog('[r]', timeStr(), comment)
 
 		# take break
 		print("paus! " + str(paustid / 60) + " min")
 		writeToLog('[f]', timeStr(), 'pause started')
 		time.sleep(paustid)
-		writeToLog('[t]', timeStr(), 'pause ended')
 		winsound.Beep(500, 550)
 		input("återgå till plugget?")
+		writeToLog('[t]', timeStr(), 'pause ended')
 
 if __name__ == '__main__':
 	try:
