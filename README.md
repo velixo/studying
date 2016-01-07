@@ -7,3 +7,4 @@ Currently only compatible with Windows computers.
 
 - Add explanation for each tag in help
 - Make compatible with all operating systems
+- Writing numbers after "återgå till plugget?" should make next study session that many minutes long
