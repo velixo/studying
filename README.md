@@ -10,5 +10,4 @@ Currently only compatible with Windows computers.
 - Make compatible with all operating systems
 - Writing numbers after "återgå till plugget?" should make next study session that many minutes long
 - Clear console when script started
-- Add so if studying not ended when keyboard interrupt recieved, ask for comment
 - Add option -v, --overview to readLog.py that display the amount of time studied and paused, in time (hours?) and percentages of study session
