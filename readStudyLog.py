@@ -8,6 +8,7 @@ def printHelp():
 	print()
 	print("Options:")
 	print("    -f, --filter <tag>  Prints out all the lines in the logfile of type <tag>.")
+	print("    -h, --help          Prints this help text.")
 
 needHelp = True
 if len(sys.argv) > 2:
@@ -22,6 +23,8 @@ if len(sys.argv) > 2:
 				if tag.find(line[1]) != -1:
 					line = line.replace('\n', '')
 					filteredLines.append(line)
+	elif option == '-h' or option == '--help':
+		printHelp()
 
 	if len(filteredLines) > 0:
 		for line in filteredLines:
