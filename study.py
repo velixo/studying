@@ -12,8 +12,11 @@ def writeToLog(p, t, c):
 	logfile.write(p + ' ' + t + ' ' + c + '\n')
 	logfile.close()
 
+studying = False
+
 
 def main():
+	global studying
 	pluggtid = 20 * 60
 	paustid = 5 * 60
 	writeToLog('[s]', timeStr(), 'session started')
@@ -21,6 +24,7 @@ def main():
 		# start studying
 		print(timeStr() + " plugga! " + str(pluggtid / 60) + " min")
 		writeToLog('[d]', timeStr(), 'studying started')
+		studying = True
 		winsound.Beep(600, 550)
 		time.sleep(pluggtid)
 		winsound.Beep(400, 1000)
@@ -39,6 +43,10 @@ if __name__ == '__main__':
 	try:
 		main()
 	except KeyboardInterrupt:
+		comment = ''
+		if studying:
+			comment = input("plugg avslutas i förtid, vad har gjorts hittils?: ")
+			writeToLog('[r]', timeStr(), comment)
 		print("plugg avslutat!")
 		writeToLog('[e]', timeStr(), 'session ended')
 		sys.exit()
