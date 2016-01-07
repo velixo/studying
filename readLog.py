@@ -38,13 +38,30 @@ def printView(tags, filters=''):
 				line = line.replace('\n', '')
 				filteredLines.append(line)
 	if len(filters) > 0:
-		pass
+		refilteredLines = []
+		for line in filteredLines:
+			lineList = line.split(' ')
+			tag = lineList[0]
+			timeStr = lineList[1]
+			comment = ''
+			for i in range(2, len(lineList)):
+				comment += lineList[i] + ' '
+			comment.strip()
+			newLine = ''
+			if filters.find('T') != -1:
+				newLine += tag + ' '
+			if filters.find('t') != -1:
+				newLine += timeStr + ' '
+			if filters.find('c') != -1:
+				newLine += comment
+			refilteredLines.append(newLine)
+		filteredLines = refilteredLines
 
 	for line in filteredLines:
 		print(line)
 
 
-validTags = 'sedrftc'
+validTags = 'sedrft'
 validFilters = 'Ttc'
 tags = ''
 filters = ''
