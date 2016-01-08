@@ -30,6 +30,7 @@ def main():
 		winsound.Beep(400, 1000)
 		comment = input("i de senaste " + str(pluggtid / 60) + " min har jag: ")
 		writeToLog('[r]', timeStr(), comment)
+		studying = False
 
 		# take break
 		print("paus! " + str(paustid / 60) + " min")
