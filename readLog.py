@@ -7,11 +7,24 @@ def printHelp():
 	print("This script parses the study logfile for human readability.")
 	print("                                ")
 	print("Options:")
-	print("    -v, --view [tag] [filter]   Prints out all the lines in the "
-							+ "logfile of type <tag>. If [filter] is "
+	print("    -f, --filter [tag] [field]   Prints the contents of the logfile. "
+							+ "if [tag] is provided, only prints log "
+							+ "statements of type [tag]. If [field] is "
 							+ "provided, only prints the fields corresponding "
-							+ "to the lettes in [filter].")
-	print("    -h, --help                  Prints this help text.")
+							+ "to the letters in [field].")
+	print("        Valid [tag] arguments:")
+	print("            s                    Start of session.")
+	print("            e                    End of session.")
+	print("            d                    Studying started.")
+	print("            r                    Studying ended.")
+	print("            f                    Pause started.")
+	print("            t                    Pause ended.")
+	print("        Valid [field] arguments:")
+	print("            T                    Displays the log statement tag.")
+	print("            t                    Displays the time of the log "
+							+ "statement.")
+	print("            c                    Displays the log statement comment.")
+	print("    -h, --help                   Prints this help text.")
 
 
 def checkTagsValid(tags):
@@ -21,14 +34,14 @@ def checkTagsValid(tags):
 	return True
 
 
-def checkFiltersValid(filters):
-	for c in filters:
-		if validFilters.find(c) == -1:
+def checkFieldsValid(fields):
+	for c in fields:
+		if validFields.find(c) == -1:
 			return False
 	return True
 
 
-def printView(tags, filters=''):
+def printView(tags, fields=''):
 	filteredLines = []
 	if len(tags) > 0:
 		logfile = open('studylog.txt', 'r')
@@ -37,7 +50,7 @@ def printView(tags, filters=''):
 			if tags.find(line[1]) != -1:
 				line = line.replace('\n', '')
 				filteredLines.append(line)
-	if len(filters) > 0:
+	if len(fields) > 0:
 		refilteredLines = []
 		for line in filteredLines:
 			lineList = line.split(' ')
@@ -48,11 +61,11 @@ def printView(tags, filters=''):
 				comment += lineList[i] + ' '
 			comment.strip()
 			newLine = ''
-			if filters.find('T') != -1:
+			if fields.find('T') != -1:
 				newLine += tag + ' '
-			if filters.find('t') != -1:
+			if fields.find('t') != -1:
 				newLine += timeStr + ' '
-			if filters.find('c') != -1:
+			if fields.find('c') != -1:
 				newLine += comment
 			refilteredLines.append(newLine)
 		filteredLines = refilteredLines
@@ -62,25 +75,25 @@ def printView(tags, filters=''):
 
 
 validTags = 'sedrft'
-validFilters = 'Ttc'
+validFields = 'Ttc'
 tags = ''
-filters = ''
+fields = ''
 viewLog = False
 needHelp = False
 if len(sys.argv) > 1:
 	option = sys.argv[1]
-	if (option == '-v' or option == '--view'):
+	if (option == '-f' or option == '--filter'):
 		tagsAreValid = False
-		filtersAreValid = False
+		fieldsAreValid = False
 		if len(sys.argv) >= 4:
 			tags = sys.argv[2]
-			filters = sys.argv[3]
+			fields = sys.argv[3]
 			tagsAreValid = checkTagsValid(tags)
-			filtersAreValid = checkFiltersValid(filters)
-			if tagsAreValid and filtersAreValid:
-				printView(tags, filters)
+			fieldsAreValid = checkFieldsValid(fields)
+			if tagsAreValid and fieldsAreValid:
+				printView(tags, fields)
 			else:
-				needHelp = True		# invalid tags or filters
+				needHelp = True		# invalid tags or fields
 		elif len(sys.argv) >= 3:
 			tags = sys.argv[2]
 			if checkTagsValid(tags):
