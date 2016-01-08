@@ -8,10 +8,13 @@ def printHelp():
 	print("                                ")
 	print("Options:")
 	print("    -f, --filter [tag] [field]   Prints the contents of the logfile. "
-							+ "if [tag] is provided, only prints log "
-							+ "statements of type [tag]. If [field] is "
-							+ "provided, only prints the fields corresponding "
-							+ "to the letters in [field].")
+							+ "if [tag] is ")
+	print("                                 provided, only prints log statements "
+							+ "of type [tag].")
+	print("                                 If [field] is provided, only prints "
+							+ "the fields")
+	print("                                 corresponding to the letters in "
+							+ "[field].")
 	print("        Valid [tag] arguments:")
 	print("            s                    Start of session.")
 	print("            e                    End of session.")
