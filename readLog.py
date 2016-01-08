@@ -7,7 +7,7 @@ def printHelp():
 	print("This script parses the study logfile for human readability.")
 	print("                                ")
 	print("Options:")
-	print("    -v, --view <tag> [filter]   Prints out all the lines in the "
+	print("    -v, --view [tag] [filter]   Prints out all the lines in the "
 							+ "logfile of type <tag>. If [filter] is "
 							+ "provided, only prints the fields corresponding "
 							+ "to the lettes in [filter].")
@@ -88,7 +88,7 @@ if len(sys.argv) > 1:
 			else:
 				needHelp = True		# invalid tags
 		else:
-			needHelp = True		# missing arguments
+			printView(validTags)
 	else:
 		needHelp = True		# option is either '-h', '--help', or invalid
 else:
