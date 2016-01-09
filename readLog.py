@@ -3,31 +3,29 @@ import sys
 
 def printHelp():
 	scriptname = sys.argv[0].replace('./', '').replace('.\\', '')
-	print("Usage: " + scriptname + " <option> [arguments]")
-	print("This script parses the study logfile for human readability.")
-	print("                                ")
-	print("Options:")
-	print("    -f, --filter [tag] [field]   Prints the contents of the logfile. "
-							+ "if [tag] is ")
-	print("                                 provided, only prints log statements "
-							+ "of type [tag].")
-	print("                                 If [field] is provided, only prints "
-							+ "the fields")
-	print("                                 corresponding to the letters in "
-							+ "[field].")
-	print("        Valid [tag] arguments:")
-	print("            s                    Start of session.")
-	print("            e                    End of session.")
-	print("            d                    Studying started.")
-	print("            r                    Studying ended.")
-	print("            f                    Pause started.")
-	print("            t                    Pause ended.")
-	print("        Valid [field] arguments:")
-	print("            T                    Displays the log statement tag.")
-	print("            t                    Displays the time of the log "
-							+ "statement.")
-	print("            c                    Displays the log statement comment.")
-	print("    -h, --help                   Prints this help text.")
+	helpText = "Usage: " + scriptname + """ <option> [arguments]
+
+Options:
+    -f, --filter [tag] [field]  Prints the contents of the logfile. If [tag]
+                                is provided, only prints log statements of
+                                type [tag]. If [field] is provided, only prints
+                                the fields corresponding to the letters in
+                                [field].
+        Valid [tag] arguments:
+            s                    Start of session.
+            e                    End of session.
+            d                    Studying started.
+            r                    Studying ended.
+            f                    Pause started.
+            t                    Pause ended.
+        Valid [field] arguments:
+            T                    Displays the log statement tag.
+            t                    Displays the time of the log statement.
+            c                    Displays the log statement comment.
+
+    -h, --help                   Prints this help text."""
+
+	print(helpText)
 
 
 def checkTagsValid(tags):
