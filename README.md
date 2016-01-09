@@ -3,6 +3,9 @@
 A simple Python3 script (in swedish) for studying.
 Currently only compatible with Windows computers.
 
+## Prerequisites
+[pyAudio](http://people.csail.mit.edu/hubert/pyaudio/#downloads)
+
 ## TODO:
 
 - Make compatible with all operating systems

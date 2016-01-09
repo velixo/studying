@@ -1,9 +1,13 @@
 import time
-import winsound
+import pyaudio
+import wave
 import sys
 
 studyTime = 20 * 60
 pauseTime = 5 * 60
+wf400 = wave.open('res/400.wav', 'rb')
+wf500 = wave.open('res/500.wav', 'rb')
+wf600 = wave.open('res/600.wav', 'rb')
 
 
 def timeStr():
@@ -16,11 +20,33 @@ def writeToLog(p, t, c):
 	logfile.close()
 
 
+def playSound(sound):
+	wf = ''
+	if sound == '600':
+		wf = wf600
+	elif sound == '500':
+		wf = wf500
+	elif sound == '400':
+		wf = wf400
+	p = pyaudio.PyAudio()
+	stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+					channels=wf.getnchannels(),
+					rate=wf.getframerate(),
+					output=True)
+	data = wf.readframes(1024)
+	while data != '':
+		stream.write(data)
+		data = wf.readframes(1024)
+	stream.stop_stream()
+	stream.close()
+	p.terminate()
+
+
 def pause():
 	print("paus! " + str(pauseTime / 60) + " min")
 	writeToLog('[f]', timeStr(), 'pause started')
 	time.sleep(pauseTime)
-	winsound.Beep(500, 550)
+	playSound('500')
 	input("återgå till plugget?")
 	writeToLog('[t]', timeStr(), 'pause ended')
 
@@ -48,9 +74,9 @@ def main():
 		print(timeStr() + " plugga! " + str(studyTime / 60) + " min")
 		writeToLog('[d]', timeStr(), 'studying started')
 		studying = True
-		winsound.Beep(600, 550)
+		playSound('600')
 		time.sleep(studyTime)
-		winsound.Beep(400, 1000)
+		playSound('400')
 		comment = input("i de senaste " + str(studyTime / 60) + " min har jag: ")
 		writeToLog('[r]', timeStr(), comment)
 		studying = False
