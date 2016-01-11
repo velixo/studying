@@ -41,7 +41,7 @@ def playSound(sound):
 
 def parseInt(input):
 	try:
-		num = int(input.trim())
+		num = int(input.strip())
 		return num
 	except ValueError:
 		return 0
@@ -71,7 +71,7 @@ def main():
 	if len(sys.argv) > 1:
 		option = sys.argv[1]
 
-		if option == '-p':
+		if option == '-p' or option == '--pause':
 			intialPause = True
 			if len(sys.argv) > 2:
 				initPauseLen = parseInt(sys.argv[2]) * 60
