@@ -4,7 +4,7 @@ import wave
 import sys
 
 studyTime = 20 * 60
-pauseTime = 5 * 60
+# pauseTime = 5 * 60
 
 
 def timeStr():
@@ -39,12 +39,25 @@ def playSound(sound):
 	p.terminate()
 
 
-def pause():
+def parseInt(input):
+	try:
+		num = int(input.trim())
+		return num
+	except ValueError:
+		return 0
+
+
+def pause(pauseTime=(5 * 60)):
 	print("paus! " + str(pauseTime / 60) + " min")
 	writeToLog('[f]', timeStr(), 'pause started')
-	time.sleep(pauseTime)
-	playSound('500')
-	input("återgå till plugget?")
+	breakLeft = True
+	while breakLeft:
+		time.sleep(pauseTime)
+		playSound('500')
+		breakLeft = False
+		pauseTime = parseInt(input("återgå till plugget?")) * 60
+		if pauseTime > 0:
+			breakLeft = True
 	writeToLog('[t]', timeStr(), 'pause ended')
 
 studying = False
@@ -53,19 +66,22 @@ studying = False
 def main():
 	global studying
 	intialPause = False
+	initPauseLen = 5 * 60
 
 	if len(sys.argv) > 1:
 		option = sys.argv[1]
 
 		if option == '-p':
 			intialPause = True
+			if len(sys.argv) > 2:
+				initPauseLen = parseInt(sys.argv[2]) * 60
 		elif option == '-h' or '--help':
 			print("Implement: write help statement.")
 			return
 
 	writeToLog('[s]', timeStr(), 'session started')
 	if intialPause:
-		pause()
+		pause(initPauseLen)
 	while True:
 		# start studying
 		print(timeStr() + " plugga! " + str(studyTime / 60) + " min")
