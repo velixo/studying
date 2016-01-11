@@ -5,9 +5,6 @@ import sys
 
 studyTime = 20 * 60
 pauseTime = 5 * 60
-wf400 = wave.open('res/400.wav', 'rb')
-wf500 = wave.open('res/500.wav', 'rb')
-wf600 = wave.open('res/600.wav', 'rb')
 
 
 def timeStr():
@@ -23,11 +20,11 @@ def writeToLog(p, t, c):
 def playSound(sound):
 	wf = ''
 	if sound == '600':
-		wf = wf600
+		wf = wave.open('res/600.wav', 'rb')
 	elif sound == '500':
-		wf = wf500
+		wf = wave.open('res/500.wav', 'rb')
 	elif sound == '400':
-		wf = wf400
+		wf = wave.open('res/400.wav', 'rb')
 	p = pyaudio.PyAudio()
 	stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
 					channels=wf.getnchannels(),
