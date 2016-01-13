@@ -9,8 +9,10 @@ A simple Python3 script (in swedish) for studying.
 
 ### High Prio
 
+- Shorten 600 Hz sound
 - Add timestamp to pause start
 - Ability to input shownotes during study session and display them when pause has been initiated
+- Ability to skip and accumulate pause time
 
 ### Low Prio
 
