@@ -90,7 +90,7 @@ def main():
 		playSound('600')
 		time.sleep(studyTime)
 		playSound('400')
-		comment = input("i de senaste " + str(studyTime / 60) + " min har jag: ")
+		comment = input("under pluggpasset har jag: ")
 		writeToLog('[r]', timeStr(), comment)
 		studying = False
 
